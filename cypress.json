@@ -1,0 +1,10 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "defaultCommandTimeout":6000,
+  "baseUrl": "https://react-redux.realworld.io/#",
+  "experimentalSessionSupport": true,
+  "env": {
+    "TAGS": "",
+    "apiServer": "https://conduit.productionready.io/api"
+  }
+}
