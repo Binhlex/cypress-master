@@ -43,7 +43,7 @@ jobs:
         with:
           spec: cypress/integration/**/${{ matrix.containers }}.feature
           browser: chrome
-          working-directory: cypress
+          working-directory: ./
 #           start: yarn start
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
