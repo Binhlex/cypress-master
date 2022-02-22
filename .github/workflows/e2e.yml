@@ -47,10 +47,19 @@ jobs:
 #           start: yarn start
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Deploy report to Github Pages
+      - name: Save failed logs
         if: always()
         uses: peaceiris/actions-gh-pages@v2
         env:
             PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            PUBLISH_BRANCH: gh-pages
+            PUBLISH_BRANCH: failed-logs
             PUBLISH_DIR: cypress/logs
+            keep_files: true
+      - name: Deploy HTML Report To GH Page
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+            PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            PUBLISH_BRANCH: html-report
+            PUBLISH_DIR: cypress/reports
+            keep_files: true
