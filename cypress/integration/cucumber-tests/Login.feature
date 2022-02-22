@@ -9,7 +9,7 @@ Feature: Login
     Scenario: Valid credentials should allow user to login
         Given Valid username 'binhle0106@gmail.com' and password 'Testing@123' are entered
         When Submit button is clicked
-        Then The text 'No articles are here... yet.' is displayed
+        Then The text 'wrong test' is displayed
 
     @smoke
     Scenario: Invalid credentials should not allow user to login using dataTable
