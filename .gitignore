@@ -11,6 +11,7 @@
 /cypress/reports
 /cypress/screenshots
 /cypress/videos
+/cypress/logs
 
 # production
 /build

@@ -7,7 +7,13 @@ describe('test', () => {
     cy.pause()
     cy.visit('/')
   })
-  it('demo', () => {
-    homePage.newPostMenu.should('be.visible')
-  })
+  it(
+    'demo',
+    {
+      retries: 1,
+    },
+    () => {
+      homePage.newPostMenu.should('not.be.visible')
+    },
+  )
 })

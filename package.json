@@ -17,13 +17,13 @@
   },
   "author": "binhle",
   "license": "ISC",
-  "dependencies": {
-    "cypress": "^9.4.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "cucumber-html-reporter": "^5.5.0",
+    "cypress": "^9.5.0",
     "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-failed-log": "^2.9.2",
     "cypress-xpath": "^1.6.2",
     "del": "^6.0.0",
     "lodash": "^4.17.21",
