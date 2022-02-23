@@ -41,9 +41,9 @@ jobs:
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         with:
-          command: npm run test
+#           command: npm run test
           spec: cypress/integration/**/${{ matrix.containers }}.feature
-#           browser: chrome
+          browser: chrome
           working-directory: ./
 #           start: yarn start
         env:
@@ -56,6 +56,8 @@ jobs:
             PUBLISH_BRANCH: failed-logs
             PUBLISH_DIR: cypress/logs
             keep_files: true
+      - name: Generate HTML report
+        run: node cucumber-html-report.js
       - name: Deploy HTML Report To GH Page
         if: always()
         uses: peaceiris/actions-gh-pages@v2
