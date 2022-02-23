@@ -54,6 +54,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Download Cypress artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build
+          path: cypress/build
       - name: Save failed logs
         if: always()
         uses: peaceiris/actions-gh-pages@v2
