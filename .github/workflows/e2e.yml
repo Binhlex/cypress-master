@@ -56,12 +56,12 @@ jobs:
           PUBLISH_BRANCH: failed-logs
           PUBLISH_DIR: cypress/logs
           keep_files: true
-      # - name: Upload cucumber report json
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: report-json
-      #     if-no-files-found: error
-      #     path: cypress/reports
+      - name: Upload cucumber report json
+        uses: actions/upload-artifact@v2
+        with:
+          name: report-json
+          if-no-files-found: error
+          path: cypress/reports
   report:
     runs-on: ubuntu-latest
     needs: e2e_tests
@@ -73,11 +73,11 @@ jobs:
         with:
           node-version: '14'
       - run: npm install
-      # - name: Download cucumber report json
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: report-json
-      #     path: cypress/reports
+      - name: Download cucumber report json
+        uses: actions/download-artifact@v2
+        with:
+          name: report-json
+          path: cypress/reports
       - name: Generate HTML report
         run: node cucumber-html-report.js
       - name: Deploy HTML Report To GH Page
