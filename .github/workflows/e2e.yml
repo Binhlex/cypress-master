@@ -39,6 +39,7 @@ jobs:
           name: build
           path: cypress/build
       - name: Cypress Test
+        continue-on-error: true
         uses: cypress-io/github-action@v2
         with:
 #           command: npm run test
