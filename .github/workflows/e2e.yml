@@ -41,9 +41,9 @@ jobs:
       - name: Cypress Test
         uses: cypress-io/github-action@v2
         with:
-          command: npm run run:test
+          command: npm run test
 #           spec: cypress/integration/**/${{ matrix.containers }}.feature
-          browser: chrome
+#           browser: chrome
           working-directory: ./
 #           start: yarn start
         env:
