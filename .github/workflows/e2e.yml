@@ -42,7 +42,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test
-#           spec: cypress/integration/**/${{ matrix.containers }}.feature
+          spec: cypress/integration/**/${{ matrix.containers }}.feature
 #           browser: chrome
           working-directory: ./
 #           start: yarn start
