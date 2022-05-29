@@ -1,0 +1,61 @@
+name: cypress regression nightly
+on:
+  push:
+    branches:
+    - main
+#     schedule:
+#     - cron: "0 14   1-5"
+
+env:
+  CYPRESS_CACHE_FOLDER: cypress/cache
+
+jobs:
+  nightly-test:
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Cache Cypress Binary
+        id: cache-cypress-binary
+        uses: actions/cache@v2
+        with:
+          path: cypress/cache
+          key: cypress-binary-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Run Tests
+        run: npm run test:demo
+
+        env:
+          EMAIL_RESULTS_TO: ${{ secrets.EMAIL_RESULTS_TO }}
+          SENDGRID_HOST: ${{ secrets.SENDGRID_HOST }}
+          SENDGRID_PORT: ${{ secrets.SENDGRID_PORT }}
+          SENDGRID_USER: ${{ secrets.SENDGRID_USER }}
+          SENDGRID_PASSWORD: ${{ secrets.SENDGRID_PASSWORD }}
+          SENDGRID_FROM: ${{ secrets.SENDGRID_FROM }}
+
+      - name: Upload report to GH page
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: report
+          PUBLISH_DIR: cypress/reports/html
+          keep_files: true
