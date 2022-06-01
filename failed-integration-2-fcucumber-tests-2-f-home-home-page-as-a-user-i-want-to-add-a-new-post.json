@@ -1,0 +1,33 @@
+{
+  "specName": "integration%2Fcucumber-tests%2FHome.feature",
+  "title": "As a user, I want to add a new post",
+  "suiteName": "Home Page",
+  "testName": "Home Page As a user, I want to add a new post",
+  "testError": "Timed out retrying after 6000ms: Expected to find element: `//a[contains(text(),'New Post')]`, but never found it.",
+  "testCommands": [
+    "log Mocha before each in common",
+    "log Cucumber before common",
+    "step **User is logged to the application**",
+    "session [\"binhle0106@gmail.com\",\"Testing@123\"]",
+    "session [\"binhle0106@gmail.com\",\"Testing@123\"]",
+    "Create New Session ",
+    "page load --waiting for new page to load--",
+    "request ",
+    "assert expected **200** to equal **200**",
+    "page load --waiting for new page to load--",
+    "Validate Session ",
+    "visit /",
+    "xhr  GET https://conduit.productionready.io/api/user",
+    "assert expected **//a[contains(text(),'New Post')]** to be **visible**",
+    "request //a[contains(text(),'New Post')]",
+    "xhr  GET https://conduit.productionready.io/api/articles/feed?limit=10&offset=0",
+    "xhr  GET https://conduit.productionready.io/api/tags",
+    "xpath //a[contains(text(),'New Post')]",
+    "page load --waiting for new page to load--",
+    "step **User is in Home page**",
+    "visit /",
+    "xhr  GET https://conduit.productionready.io/api/user",
+    "step **User clicks on New Post menu**",
+    "request //a[contains(text(),'New Post')]"
+  ]
+}
