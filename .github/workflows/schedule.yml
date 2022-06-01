@@ -12,7 +12,7 @@ env:
 jobs:
   install:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
+#     container: cypress/browsers:node14.17.6-slim-chrome100-ff99-edge
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -52,10 +52,14 @@ jobs:
         uses: actions/checkout@v2
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        
+        continue-on-error: true
+        with:
+#           command: npm run test
+          spec: cypress/integration/**/${{ matrix.containers }}.feature
+          browser: chrome
+          
 #       - name: Run Tests
 #         run: npm run test:demo
-
 #         env:
 #           EMAIL_RESULTS_TO: ${{ secrets.EMAIL_RESULTS_TO }}
 #           SENDGRID_HOST: ${{ secrets.SENDGRID_HOST }}
