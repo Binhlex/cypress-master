@@ -1,9 +1,9 @@
 name: E2E Testing
 on: 
   push:
-    branches: [ main ]
+    branches: [ xxx ]
   pull_request:
-    branches: [ main ]
+    branches: [ xxx ]
 jobs:
   install:
     runs-on: ubuntu-latest
